@@ -1,11 +1,17 @@
 // src/AddContactForm.tsx
+
 import { useState, useEffect } from "react";
 import { addContact, getAllContacts } from "../idb";
 
 function AddContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [contacts, setContacts] = useState<any>([]);
+  const [contacts, setContacts] = useState<
+    {
+      name: string;
+      email: string;
+    }[]
+  >([]);
 
   // Load contacts on component mount
   useEffect(() => {
@@ -16,7 +22,7 @@ function AddContactForm() {
     loadContacts();
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const newContact = { name, email };

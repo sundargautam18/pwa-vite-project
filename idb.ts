@@ -7,11 +7,16 @@ const dbPromise = openDB("contacts-db", 1, {
   },
 });
 
-export async function addContact(contact) {
+export async function addContact(contact: { name: string; email: string }) {
   return (await dbPromise).add("contacts", contact);
 }
 
-export async function getAllContacts() {
+export async function getAllContacts(): Promise<
+  {
+    name: string;
+    email: string;
+  }[]
+> {
   return (await dbPromise).getAll("contacts");
 }
 
