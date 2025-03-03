@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PWA App + TypeScript</title>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/sw.js", { scope: "/" })
+            .then((registration) => {
+              console.log("Service Worker registered:", registration);
+            })
+            .catch((error) =>
+              console.error("Service Worker registration failed:", error)
+            );
+        });
+
+        // Request notification permission on page load
+        if ("Notification" in window) {
+          Notification.requestPermission().then((permission) => {
+            if (permission === "granted") {
+              console.log("Notification permission granted.");
+            }
+          });
+        }
+
+        // Send a message to the SW when online
+        window.addEventListener("online", () => {
+          if (navigator.serviceWorker.controller) {
+            navigator.serviceWorker.controller.postMessage("online");
+          }
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
