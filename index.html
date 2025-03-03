@@ -4,11 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PWA App + TypeScript</title>
+    <script src="/idb.js"></script>
+
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
           navigator.serviceWorker
-            .register("/sw.js", { scope: "/" })
+            .register("/sw.js", { scope: "/", type: "module" })
             .then((registration) => {
               console.log("Service Worker registered:", registration);
             })

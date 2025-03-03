@@ -1,15 +1,18 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import appLogo from '/favicon.svg'
-import PWABadge from './PWABadge.tsx'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import appLogo from "/favicon.svg";
+import PWABadge from "./PWABadge.tsx";
+import "./App.css";
+import AddContactForm from "./AddContactForm.tsx";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
       <div>
+        <h1>Contact Manager</h1>
+        <AddContactForm />
         <a href="https://vite.dev" target="_blank">
           <img src={appLogo} className="logo" alt="pwa-app logo" />
         </a>
@@ -31,7 +34,7 @@ function App() {
       </p>
       <PWABadge />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
