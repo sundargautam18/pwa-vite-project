@@ -4,16 +4,17 @@ import react from "@vitejs/plugin-react";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "./",
   server: {
-    allowedHosts: [".loca.lt"],
+    allowedHosts: true,
   },
   preview: {
-    allowedHosts: [".loca.lt"],
+    allowedHosts: true,
   },
   plugins: [
     react(),
     VitePWA({
-      registerType: "autoUpdate",
+      registerType: "prompt",
       injectRegister: false,
 
       pwaAssets: {
@@ -22,10 +23,22 @@ export default defineConfig({
       },
 
       manifest: {
-        name: "pwa-app",
-        short_name: "pwa-app",
+        name: "AITC App",
+        short_name: "aitc app",
         description: "pwa is the description",
         theme_color: "#ffffff",
+        icons: [
+          {
+            src: "/aitc.png",
+            sizes: "192x192",
+            type: "image/png",
+          },
+          {
+            src: "/aitc.png",
+            sizes: "512x512",
+            type: "image/png",
+          },
+        ],
       },
 
       workbox: {
@@ -35,7 +48,7 @@ export default defineConfig({
       },
 
       devOptions: {
-        enabled: false,
+        enabled: true,
         navigateFallback: "index.html",
         suppressWarnings: true,
         type: "module",

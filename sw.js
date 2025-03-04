@@ -1,4 +1,3 @@
-import { getAllContacts } from "./idb.ts";
 self.addEventListener("install", (event) => {
   console.log("Service Worker: Installed");
   self.skipWaiting();
@@ -11,9 +10,7 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("message", async (event) => {
   if (event.data === "online") {
-    const db = await getAllContacts();
-    console.log(db);
-
+    console.log("Service Worker: Online");
     // Show notification (permission must be granted from the main script)
     self.registration.showNotification("You're Online!", {
       body: "Sync to the server.",
