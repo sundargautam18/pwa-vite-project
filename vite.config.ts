@@ -14,17 +14,9 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: "prompt",
-      injectRegister: false,
-      injectManifest: {
-        swSrc: "./sw.js",
-        swDest: "./dist/sw.js",
-      },
-      pwaAssets: {
-        disabled: false,
-        config: true,
-      },
-
+      srcDir: "src",
+      filename: "service-worker.js",
+      strategies: "injectManifest",
       manifest: {
         name: "AITC App",
         short_name: "aitc app",
