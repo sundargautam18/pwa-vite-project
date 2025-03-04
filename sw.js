@@ -7,7 +7,7 @@ self.addEventListener("activate", (event) => {
   console.log("Service Worker: Activated");
   event.waitUntil(self.clients.claim());
 });
-
+//cahnges
 self.addEventListener("message", async (event) => {
   if (event.data === "online") {
     console.log("Service Worker: Online");
